@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Launch Radar</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <h1>Token Launch Radar</h1>
+    <p class="sub">Pre-token protocols ranked by implied value, priced from traded peers in the same snapshot.</p>
+  </div>
+  <div class="stamp" id="stamp">snapshot</div>
+</header>
+<section class="stats" id="stats"></section>
+<section class="model-note">
+  <strong>How the price is made:</strong> each category of traded protocol gives a median market-cap / TVL
+  multiple. A pre-token protocol is priced at its TVL times that multiple, adjusted for seven-day momentum,
+  for how long it has run while still recording no token, and for the number of chains it covers.
+  Token-bearing protocols are set aside, never ranked, and so are wrapped, staked and bridged products of a
+  token that already trades, exchange venues, and superseded versions. Implied value is this board's claim,
+  not a prediction that a token will launch.
+</section>
+<section class="controls">
+  <input id="q" type="search" placeholder="Search name or slug">
+  <select id="cat"><option value="">All categories</option></select>
+  <select id="scope">
+    <option value="all">Watchlist + early finds</option>
+    <option value="watch">Watchlist only</option>
+    <option value="early">Early finds only</option>
+  </select>
+  <select id="sort">
+    <option value="rank">Sort: implied value</option>
+    <option value="tvl">Sort: TVL</option>
+    <option value="growth">Sort: 7d growth</option>
+    <option value="age">Sort: age, oldest first</option>
+  </select>
+  <span class="count" id="count"></span>
+</section>
+<main class="layout">
+  <div class="board-wrap">
+    <table class="board">
+      <thead><tr>
+        <th>#</th><th>Protocol</th><th>Category</th><th>TVL</th><th>7d</th>
+        <th>Age</th><th>Peer x</th><th>Implied value</th><th>Signal</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  <aside class="detail" id="detail">
+    <p class="hint">Select a protocol to see why it is priced where it is, and the exact steps to farm it.</p>
+  </aside>
+</main>
+<footer>Built for the make.fun token-radar-01 bounty. Data: one sealed DefiLlama snapshot, read locally, no network.</footer>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
